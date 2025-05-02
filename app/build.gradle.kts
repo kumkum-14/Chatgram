@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-
+    compileSdk = 34
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     namespace = "com.example.chatgram"
-    compileSdk = 34
+
 
     defaultConfig {
         applicationId = "com.example.chatgram"
@@ -43,6 +43,7 @@ dependencies {
     implementation("com.cometchat:chat-sdk-android:4.0.10")
     implementation("com.cometchat:pro-android-ui-kit:4.0.10")
     implementation ("com.cometchat:calls-sdk-android:4.1.0")
+
 
 
     testImplementation("junit:junit:4.13.2")

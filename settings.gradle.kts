@@ -3,7 +3,8 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven ( url ="https://dl.cloudsmith.io/public/cometchat/cometchat/maven/" )  // Add CometChat repository here
+        maven ( url ="https://dl.cloudsmith.io/public/cometchat/cometchat/maven/" )
+
     }
 }
 
@@ -12,7 +13,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven (url ="https://dl.cloudsmith.io/public/cometchat/cometchat/maven/" )  // Add CometChat repository here too
+        maven (url ="https://dl.cloudsmith.io/public/cometchat/cometchat/maven/" )
+
     }
 }
 

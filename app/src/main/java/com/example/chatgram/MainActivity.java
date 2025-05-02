@@ -1,23 +1,28 @@
 package com.example.chatgram;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.cometchat.pro.uikit.ui_components.cometchat_conversations_with_messages.CometChatConversationsWithMessagesActivity;
 
-import com.cometchat.pro.CometChat;
-import com.cometchat.pro.exceptions.CometChatException;
-import com.cometchat.pro.models.User;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+
+
+import com.cometchat.chat.core.CometChat;
+import com.cometchat.chat.exceptions.CometChatException;
+import com.cometchat.chat.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText uidEditText;
-    private Button loginBtn, chatBtn;
+    private Button chatBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,24 +31,23 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize UI components
         uidEditText = findViewById(R.id.uidEditText);
-        loginBtn = findViewById(R.id.loginBtn);
+        Button loginBtn = findViewById(R.id.loginBtn);
         chatBtn = findViewById(R.id.chatBtn);
 
-        // Initialize CometChat SDK
-        CometChat.init(this, "2746564017229948", "in", new CometChat.CallbackListener<Void>() {
+        CometChat.init(this, "2746564017229948", "IN", new CometChat.CallbackListener<String>() {
             @Override
-            public void onSuccess(Void success) {
-                Toast.makeText(MainActivity.this, "CometChat Initialized", Toast.LENGTH_SHORT).show();
+            public void onSuccess(String successMessage) {
+                Log.d(TAG, "Initialization completed successfully");
             }
 
             @Override
-            public void onError(CometChatException error) {
-                Toast.makeText(MainActivity.this, "Initialization Failed: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onError(CometChatException e) {
+                Log.d(TAG, "Initialization failed with exception: " + e.getMessage());
             }
         });
 
 
-        // Login button click listener
+
         loginBtn.setOnClickListener(view -> {
             String UID = uidEditText.getText().toString().trim();
             if (!UID.isEmpty()) {
@@ -54,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Chat button click listener (shown after login)
+
         chatBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, CometChatConversationsWithMessagesActivity.class);
+            Intent intent = new Intent(MainActivity.this, MyCustomChatActivity.class);
             startActivity(intent);
         });
     }
