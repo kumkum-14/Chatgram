@@ -24,28 +24,15 @@ public class MainActivity extends AppCompatActivity {
     private EditText uidEditText;
     private Button chatBtn;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Initialize UI components
+        Log.d("MainActivity", "App started");
         uidEditText = findViewById(R.id.uidEditText);
         Button loginBtn = findViewById(R.id.loginBtn);
         chatBtn = findViewById(R.id.chatBtn);
-
-        CometChat.init(this, "2746564017229948", "IN", new CometChat.CallbackListener<String>() {
-            @Override
-            public void onSuccess(String successMessage) {
-                Log.d(TAG, "Initialization completed successfully");
-            }
-
-            @Override
-            public void onError(CometChatException e) {
-                Log.d(TAG, "Initialization failed with exception: " + e.getMessage());
-            }
-        });
-
 
 
         loginBtn.setOnClickListener(view -> {
